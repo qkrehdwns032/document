@@ -18,17 +18,11 @@ public class Document {
     @Column(name = "date")
     private LocalDateTime date;
 
-    @Column(name = "method")
-    private String method;
-
-    @Column(name = "endPoint")
-    private String endPoint;
-
     @Column(name = "statusCodeSuccess")
-    private Long statusCode;
+    private Integer statusCode;
 
     @Column(name = "statusCodeFail")
-    private Long statusCodeFail;
+    private Integer statusCodeFail;
 
     @Column(name = "mediaType")
     private String mediaType;
@@ -36,4 +30,7 @@ public class Document {
     @ManyToOne
     @JoinColumn(name = "projectId")
     private Project project;
+
+    @OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
+    private List<Endpoint> endpoints;
 }

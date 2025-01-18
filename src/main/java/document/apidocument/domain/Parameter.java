@@ -16,6 +16,7 @@ public class Parameter {
     @Column(name = "description")
     private String description;
 
-
-
+    @ManyToOne
+    @JoinColumn(name = "endpointId")   // 관계의 주인
+    private Endpoint endpoint;
 }
