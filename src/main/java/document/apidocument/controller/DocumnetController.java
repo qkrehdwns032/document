@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/document/")
 public class DocumnetController {
 
-    @Autowired
-    private DocumentService documentService;
+    private final DocumentService documentService;
 
     // 글 작성
     @PostMapping("/create")

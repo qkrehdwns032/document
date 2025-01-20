@@ -7,6 +7,7 @@ import document.apidocument.domain.Project;
 import document.apidocument.dto.document.DocumentRequest;
 import document.apidocument.repository.DocumentRepository;
 import document.apidocument.repository.ProjectRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,12 +16,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class DocumentService {
 
-    @Autowired
-    private DocumentRepository documentRepository;
-    @Autowired
-    private ProjectRepository projectRepository;
+    private final DocumentRepository documentRepository;
+    private final ProjectRepository projectRepository;
 
     @Transactional
     public Document createDocument(DocumentRequest dto) {
