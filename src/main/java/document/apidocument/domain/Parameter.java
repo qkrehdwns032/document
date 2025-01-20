@@ -10,11 +10,14 @@ public class Parameter {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "paramName")
-    private String paramName;
+    @Column(name = "annotation")
+    private String annotation;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "type")
+    private String type;
+
+    @Column(name = "data")
+    private String data;
 
     @ManyToOne
     @JoinColumn(name = "endpointId")

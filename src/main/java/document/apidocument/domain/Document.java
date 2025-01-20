@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class Document {
     private LocalDateTime date;
 
     @Column(name = "statusCodeSuccess")
-    private Integer statusCode;
+    private Integer statusCodeSuccess;
 
     @Column(name = "statusCodeFail")
     private Integer statusCodeFail;
@@ -32,5 +33,5 @@ public class Document {
     private Project project;
 
     @OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
-    private List<Endpoint> endpoints;
+    private List<Endpoint> endpoints = new ArrayList<>();
 }
