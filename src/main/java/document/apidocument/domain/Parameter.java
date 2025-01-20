@@ -17,6 +17,6 @@ public class Parameter {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "endpointId")   // 관계의 주인
+    @JoinColumn(name = "endpointId")
     private Endpoint endpoint;
 }

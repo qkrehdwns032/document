@@ -13,8 +13,11 @@ public class User {
     @GeneratedValue
     public Long id;
 
-    @Column(name = "userName")
-    private String userName;
+    @Column(name = "role")
+    private String role;
+
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "gender")
     private boolean gender;
