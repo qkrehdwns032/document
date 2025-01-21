@@ -11,6 +11,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProjectService {
@@ -20,23 +23,29 @@ public class ProjectService {
 
     @Transactional
     public Project createProject(ProjectRequest projectRequest) {
-        Project project = new Project();
-        project.setProjectName(projectRequest.getProjectName());
-        project.setDescription(projectRequest.getDescription());
-        project.setIsPrivate(projectRequest.getIsPrivate());
+            Project project = Project.builder()
+                    .projectName(projectRequest.getProjectName())
+                    .description(projectRequest.getDescription())
+                    .isPrivate(projectRequest.getIsPrivate())
+                    .build();
 
-        // user와 parameter의 연관관계 형성해주어야함
+            User user = getCurrentUser();
+            addUserToProject(project,user);
+
+            return projectRepository.save(project);
+    }
+
+    private User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
         String username = authentication.getName();
-
-        User user = userRepository.findByUsername(username)
+        return userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
+    }
 
-
-
-
-        return projectRepository.save(project);
+    private void addUserToProject(Project project, User user) {
+        List<User> users = new ArrayList<>();
+        users.add(user);
+        project.setUsers(users);
     }
 
 }

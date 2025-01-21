@@ -1,12 +1,17 @@
 package document.apidocument.domain;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Table
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Project {
 
     @Id
@@ -26,5 +31,5 @@ public class Project {
     private List<User> users;
 
     @OneToMany(mappedBy = "project")
-    private List<Document> documents;
+    private List<Document> documents = new ArrayList<>();
 }
