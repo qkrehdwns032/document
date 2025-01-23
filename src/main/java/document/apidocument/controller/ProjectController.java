@@ -22,7 +22,7 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
-    @GetMapping("/readAll")
+    @GetMapping("/readAll") // 전체 프로젝트 불러오기
     public ResponseEntity<List<Project>> readAll(){
         List<Project> projects = projectService.readAllProjects();
 
@@ -61,16 +61,18 @@ public class ProjectController {
         }
     }
 
-    @PostMapping("/update") // project 수정
-    public void updateProject(){
-
-
-    }
-
     @PostMapping("/delete/{projectId}") // project 삭제
-    public void deleteProject(){
+    public ResponseEntity<String> deleteProject(@PathVariable Long projectId){
         // 로그인한 사용자와 프로젝트 생성자를 권한 비교하여 삭제를 진행한다.
+        Boolean flag = projectService.isProjectCreator(projectId);
 
+        if(flag){
+            projectService.deleteProject(projectId);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("삭제되었습니다");
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("권한이 없습니다.");
+        }
     }
 
     @GetMapping("read/{projectId}") // project 조회

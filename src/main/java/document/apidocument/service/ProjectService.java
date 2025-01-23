@@ -88,4 +88,8 @@ public class ProjectService {
 
         projectRepository.save(project);
     }
+    @Transactional
+    public void deleteProject(Long projectId) {
+        projectRepository.deleteById(projectId);
+    }
 }
