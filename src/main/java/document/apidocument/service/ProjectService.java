@@ -22,6 +22,12 @@ public class ProjectService {
     private final UserRepository userRepository;
     private final UserService userService;
 
+    public List<Project> readAllProjects() {
+        List<Project> projects = projectRepository.findAll();
+
+        return projects;
+    }
+
     @Transactional
     public Project createProject(ProjectRequest projectRequest) {
             Project project = Project.builder()
@@ -49,7 +55,6 @@ public class ProjectService {
         project.setUsers(users);
     }
 
-    @Transactional
     public Project readProject(Long projectId) {
         Project project = projectRepository.findById(projectId)
                 .orElseThrow(() -> new RuntimeException("Project not found"));
