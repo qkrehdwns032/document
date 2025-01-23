@@ -20,6 +20,7 @@ public class ProjectService {
 
     private final ProjectRepository projectRepository;
     private final UserRepository userRepository;
+    private final UserService userService;
 
     @Transactional
     public Project createProject(ProjectRequest projectRequest) {
@@ -48,4 +49,38 @@ public class ProjectService {
         project.setUsers(users);
     }
 
+    @Transactional
+    public Project readProject(Long projectId) {
+        Project project = projectRepository.findById(projectId)
+                .orElseThrow(() -> new RuntimeException("Project not found"));
+
+        return project;
+    }
+
+    public Boolean isProjectCreator(Long projectId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        String loginUserName = authentication.getName(); // 로그인한 사용자와 프로젝트의 생성자가 동일한 지 비교
+        Project project = readProject(projectId);
+        String projectCreator = project.getProjectCreator();
+
+        if(loginUserName.equals(projectCreator)) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void inviteUser(Long projectId, String username) {
+        Project project = readProject(projectId);
+        List<User> users = project.getUsers();
+
+        User user = userService.findUserByUsername(username);
+        users.add(user);
+
+        project.setUsers(users);
+
+        projectRepository.save(project);
+    }
 }

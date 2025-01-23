@@ -13,7 +13,7 @@ public class User {
     @GeneratedValue
     public Long id;
 
-    @Column(name = "role")
+    @Column(name = "role") // admin과 user?
     private String role;
 
     @Column(name = "username")

@@ -27,6 +27,9 @@ public class Project {
     @Column(name = "isPrivate")
     private Boolean isPrivate;
 
+    @Column(name = "projectCreator")
+    private String projectCreator;
+
     @ManyToMany
     private List<User> users;
 
