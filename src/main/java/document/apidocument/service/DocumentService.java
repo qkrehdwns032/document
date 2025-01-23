@@ -67,4 +67,10 @@ public class DocumentService {
         // 4. Document 저장 (cascade로 인해 endpoint와 parameter도 함께 저장됨)
         return documentRepository.save(document);
     }
+
+    public Document readDocument(Long documentId) {
+        return documentRepository.findById(documentId)
+                .orElseThrow(() -> new RuntimeException("Document not found"));
+    }
+
 }

@@ -4,12 +4,8 @@ import document.apidocument.domain.Document;
 import document.apidocument.dto.document.DocumentRequest;
 import document.apidocument.service.DocumentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,17 +14,17 @@ public class DocumnetController {
 
     private final DocumentService documentService;
 
-    // 글 작성
+    // 문서 작성
     @PostMapping("/create")
     public ResponseEntity<Document> createDocument(@RequestBody DocumentRequest documentRequest){
         return ResponseEntity.ok(documentService.createDocument(documentRequest));
     }
 
-    // 글 수정
+    // 문서 조회
+    @GetMapping("/read/{documentId}")
+    public ResponseEntity<Document> readDocument(@PathVariable Long  documentId){
+        Document document = documentService.readDocument(documentId);
 
-    // 삭제기능은 없이할까
-
-    // 문서에 user collaborator 초대 기능
-
-
+        return ResponseEntity.ok(document);
+    }
 }
