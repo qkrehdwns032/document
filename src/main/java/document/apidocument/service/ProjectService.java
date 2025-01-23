@@ -37,22 +37,21 @@ public class ProjectService {
                     .build();
 
             User user = getCurrentUser();
-            addUserToProject(project,user);
+            addCreatorToProject(project,user);
 
             return projectRepository.save(project);
     }
 
     private User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        return userRepository.findByUsername(username)
+        String loginId = authentication.getName();
+        return userRepository.findByLoginId(loginId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-    private void addUserToProject(Project project, User user) {
-        List<User> users = new ArrayList<>();
-        users.add(user);
-        project.setUsers(users);
+    private void addCreatorToProject(Project project, User user) {
+        String creatorName = user.getUsername();
+        project.setProjectCreator(creatorName);
     }
 
     public Project readProject(Long projectId) {

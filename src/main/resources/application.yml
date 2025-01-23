@@ -1,1 +1,3 @@
-spring.application.name=apidocument
+jwt:
+  secret: aklfdjaldfjafdaj;ifdaio;fjdaio
+  token-validity-in-seconds: 86400  # 24시간

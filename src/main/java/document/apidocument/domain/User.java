@@ -6,7 +6,8 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-@Table
+@Table(name = "users")
+@Entity
 public class User {
 
     @Id
@@ -22,7 +23,7 @@ public class User {
     @Column(name = "gender")
     private boolean gender;
 
-    @Column(name = "loginId")
+    @Column(name = "loginId",unique = true)
     private String loginId;
 
     @Column(name = "password")

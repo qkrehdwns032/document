@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 @Table
+@Entity
 public class Endpoint {
 
     @Id

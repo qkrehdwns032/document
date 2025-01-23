@@ -1,6 +1,7 @@
 package document.apidocument.controller;
 
 import document.apidocument.dto.login.LoginRequest;
+import document.apidocument.dto.login.SignupRequest;
 import document.apidocument.dto.login.TokenResponse;
 import document.apidocument.security.jwt.JwtTokenProvider;
 import document.apidocument.service.UserService;
@@ -24,8 +25,8 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody LoginRequest request) {
-        userService.signup(request.getUsername(), request.getPassword());
+    public ResponseEntity<?> signup(@RequestBody SignupRequest request) {
+        userService.signup(request);
         return ResponseEntity.ok("User registered successfully");
     }
 
@@ -33,7 +34,7 @@ public class AuthController {
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getUsername(),
+                        request.getLoginId(),
                         request.getPassword()
                 )
         );

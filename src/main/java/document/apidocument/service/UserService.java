@@ -1,6 +1,8 @@
 package document.apidocument.service;
 
 import document.apidocument.domain.User;
+import document.apidocument.dto.login.LoginRequest;
+import document.apidocument.dto.login.SignupRequest;
 import document.apidocument.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,8 @@ public class UserService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username)
+    public UserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException {
+        User user = userRepository.findByLoginId(loginId)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         // role이 하나이므로 List에 하나만 추가
@@ -32,19 +34,23 @@ public class UserService implements UserDetailsService {
         );
 
         return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
+                user.getLoginId(),
                 user.getPassword(),
                 authorities
         );
     }
 
-    public User signup(String username, String password) {
+    public User signup(SignupRequest signupRequest) {
+        String username = signupRequest.getUsername();
+        String loginId = signupRequest.getLoginId();
+        String password = signupRequest.getPassword();
         if (userRepository.existsByUsername(username)) {
             throw new RuntimeException("Username already exists");
         }
 
         User user = new User();
         user.setUsername(username);
+        user.setLoginId(loginId);
         user.setPassword(passwordEncoder.encode(password));
         user.setRole("ROLE_USER");  // 기본 권한 설정
 

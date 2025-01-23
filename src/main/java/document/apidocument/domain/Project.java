@@ -1,5 +1,6 @@
 package document.apidocument.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Project {
 
     @Id
@@ -31,6 +33,7 @@ public class Project {
     private String projectCreator;
 
     @ManyToMany
+    @JsonIgnore
     private List<User> users;
 
     @OneToMany(mappedBy = "project")

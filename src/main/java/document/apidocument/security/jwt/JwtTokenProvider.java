@@ -31,8 +31,8 @@ public class JwtTokenProvider {
     }
 
     // 토큰 생성
-    public String createToken(String username, Collection<? extends GrantedAuthority> authorities) {
-        Claims claims = Jwts.claims().setSubject(username);
+    public String createToken(String loginId, Collection<? extends GrantedAuthority> authorities) {
+        Claims claims = Jwts.claims().setSubject(loginId);
         claims.put("auth", authorities.stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList()));

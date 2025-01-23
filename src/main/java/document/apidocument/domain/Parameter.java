@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 @Table
+@Entity
 public class Parameter {
     @Id
     @GeneratedValue

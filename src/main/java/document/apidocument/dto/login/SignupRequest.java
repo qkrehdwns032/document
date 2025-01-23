@@ -3,9 +3,10 @@ package document.apidocument.dto.login;
 import lombok.Getter;
 import lombok.Setter;
 
-// LoginRequest.java
-@Getter @Setter
-public class LoginRequest {
+@Getter
+@Setter
+public class SignupRequest {
+    private String username;
     private String loginId;
     private String password;
 }
