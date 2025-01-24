@@ -1,6 +1,7 @@
 package document.apidocument.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -37,5 +38,6 @@ public class Project {
     private List<User> users;
 
     @OneToMany(mappedBy = "project")
+    @JsonManagedReference
     private List<Document> documents = new ArrayList<>();
 }

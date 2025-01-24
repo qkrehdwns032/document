@@ -8,7 +8,6 @@ import document.apidocument.dto.document.DocumentRequest;
 import document.apidocument.repository.DocumentRepository;
 import document.apidocument.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,9 +26,6 @@ public class DocumentService {
         // 1. Document 엔티티 생성
         Document document = new Document();
         document.setDate(dto.getDate());
-        document.setStatusCodeSuccess(dto.getStatusCodeSuccess());
-        document.setStatusCodeFail(dto.getStatusCodeFail());
-        document.setMediaType(dto.getMediaType());
 
         // Project 설정
         Project project = projectRepository.findById(dto.getProjectId())
@@ -40,7 +36,7 @@ public class DocumentService {
         List<Endpoint> endpoints = dto.getEndpoints().stream()
                 .map(endpointDTO -> {
                     Endpoint endpoint = new Endpoint();
-                    endpoint.setPath(endpointDTO.getPath());
+                    endpoint.setPath(endpointDTO.getPath()); // dto 이름이 맞나?
                     endpoint.setMethod(endpointDTO.getMethod());
                     endpoint.setDocument(document);
 

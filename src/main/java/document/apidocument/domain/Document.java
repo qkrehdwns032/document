@@ -1,5 +1,7 @@
 package document.apidocument.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,19 +22,12 @@ public class Document {
     @Column(name = "date")
     private LocalDateTime date;
 
-    @Column(name = "statusCodeSuccess")
-    private Integer statusCodeSuccess;
-
-    @Column(name = "statusCodeFail")
-    private Integer statusCodeFail;
-
-    @Column(name = "mediaType")
-    private String mediaType;
-
     @ManyToOne
     @JoinColumn(name = "projectId")
+    @JsonBackReference
     private Project project;
 
     @OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Endpoint> endpoints = new ArrayList<>();
 }

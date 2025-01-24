@@ -1,5 +1,6 @@
 package document.apidocument.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,5 +23,6 @@ public class Parameter {
 
     @ManyToOne
     @JoinColumn(name = "endpointId")
+    @JsonBackReference
     private Endpoint endpoint;
 }

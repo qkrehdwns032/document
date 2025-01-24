@@ -10,9 +10,6 @@ import java.util.List;
 @Setter
 public class DocumentRequest {
     private LocalDateTime date;
-    private Integer statusCodeSuccess;
-    private Integer statusCodeFail;
-    private String mediaType;
     private Long projectId;
-    private List<EndpointDto> endpoints;
+    private List<EndpointRequest> endpoints;
 }

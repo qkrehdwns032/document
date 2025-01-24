@@ -7,8 +7,8 @@ import java.util.List;
 
 @Getter
 @Setter
-public class EndpointDto {
+public class EndpointRequest {
     private String path;
     private String method;
-    private List<ParameterDto> parameters;
+    private List<ParameterRequest> parameters;
 }
