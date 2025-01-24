@@ -25,6 +25,9 @@ public class Endpoint {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "contentType")
+    private String contentType;
+
     @Column(name = "statusCodeSuccess")
     private Integer statusCodeSuccess;
 
