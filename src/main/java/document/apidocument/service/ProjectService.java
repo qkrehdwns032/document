@@ -37,6 +37,7 @@ public class ProjectService {
 
             User user = getCurrentUser();
             addCreatorToProject(project,user);
+            addUserToProject(project, user);
 
             return projectRepository.save(project);
     }
@@ -51,6 +52,12 @@ public class ProjectService {
     private void addCreatorToProject(Project project, User user) {
         String creatorName = user.getUsername();
         project.setProjectCreator(creatorName);
+    }
+
+    private void addUserToProject(Project project, User user) {
+        List<User> users = project.getUsers();
+        users.add(user);
+        project.setUsers(users);
     }
 
     public Project readProject(Long projectId) {
@@ -86,8 +93,18 @@ public class ProjectService {
 
         projectRepository.save(project);
     }
+
     @Transactional
     public void deleteProject(Long projectId) {
         projectRepository.deleteById(projectId);
     }
+
+    public List<Project> readUserProject(){
+        User user = getCurrentUser();
+
+        List<Project> projects = projectRepository.findByUsersContaining(user);
+
+        return projects;
+    }
+
 }
