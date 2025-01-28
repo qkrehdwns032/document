@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,9 +38,12 @@ public class ProjectService {
 
             User user = getCurrentUser();
             addCreatorToProject(project,user);
+
+            project = projectRepository.save(project);
+
             addUserToProject(project, user);
 
-            return projectRepository.save(project);
+            return project;
     }
 
     private User getCurrentUser() {
@@ -55,8 +59,15 @@ public class ProjectService {
     }
 
     @Transactional
-    protected void addUserToProject(Project project, User user) {
+    public void addUserToProject(Project project, User user) {
+        if (project.getUsers() == null) {
+            project.setUsers(new ArrayList<>());
+        }
         project.getUsers().add(user);
+
+        if (user.getProjects() == null) {
+            user.setProjects(new ArrayList<>());
+        }
         user.getProjects().add(project);
     }
 

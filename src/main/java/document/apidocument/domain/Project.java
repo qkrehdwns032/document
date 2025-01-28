@@ -33,6 +33,7 @@ public class Project {
     @Column(name = "projectCreator")
     private String projectCreator;
 
+    @Builder.Default
     @ManyToMany
     @JsonIgnore
     private List<User> users = new ArrayList<>();
