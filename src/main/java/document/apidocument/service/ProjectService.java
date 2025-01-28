@@ -54,10 +54,10 @@ public class ProjectService {
         project.setProjectCreator(creatorName);
     }
 
-    private void addUserToProject(Project project, User user) {
-        List<User> users = project.getUsers();
-        users.add(user);
-        project.setUsers(users);
+    @Transactional
+    protected void addUserToProject(Project project, User user) {
+        project.getUsers().add(user);
+        user.getProjects().add(project);
     }
 
     public Project readProject(Long projectId) {

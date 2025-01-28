@@ -3,6 +3,7 @@ package document.apidocument.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -30,5 +31,5 @@ public class User {
     private String password;
 
     @ManyToMany(mappedBy = "users")
-    private List<Project> projects;
+    private List<Project> projects = new ArrayList<>();
 }
