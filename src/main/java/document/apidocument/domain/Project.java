@@ -35,7 +35,7 @@ public class Project {
 
     @ManyToMany
     @JsonIgnore
-    private List<User> users;
+    private List<User> users = new ArrayList<>();
 
     @OneToMany(mappedBy = "project")
     @JsonManagedReference
