@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/document/")
@@ -27,4 +29,15 @@ public class DocumnetController {
 
         return ResponseEntity.ok(document);
     }
+
+    // 문서 전체 조회
+    @GetMapping("/read/all")
+    public ResponseEntity<List<Document>> readAllDocuments(){
+        List<Document> documents = documentService.readAllDocuments();
+
+        return ResponseEntity.ok(documents);
+    }
+
+
+
 }

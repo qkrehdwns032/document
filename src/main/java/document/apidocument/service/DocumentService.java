@@ -69,4 +69,8 @@ public class DocumentService {
                 .orElseThrow(() -> new RuntimeException("Document not found"));
     }
 
+    public List<Document> readAllDocuments() {
+        return documentRepository.findAll();
+    }
+
 }
