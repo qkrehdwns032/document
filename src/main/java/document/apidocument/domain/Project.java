@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,9 @@ public class Project {
 
     @Column(name = "description")
     private String description;
+
+    @Column
+    private LocalDateTime date;
 
     @Column(name = "isPrivate")
     private Boolean isPrivate;
