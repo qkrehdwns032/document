@@ -20,13 +20,6 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
-//    @GetMapping("/readAll") // 전체 프로젝트 불러오기 // 이거 필요 없을 듯?
-//    public ResponseEntity<List<Project>> readAll(){
-//        List<Project> projects = projectService.readAllProjects();
-//
-//        return ResponseEntity.ok(projects);
-//    }
-
     @GetMapping("/read/project") // 본인의 project들 조회
     public ResponseEntity<List<Project>> readUserProject(){
         List<Project> projects = projectService.readUserProject();

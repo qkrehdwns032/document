@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -73,4 +74,8 @@ public class DocumentService {
         return documentRepository.findAll();
     }
 
+    public Document getPreviousDocument(){
+        return documentRepository.findFirstByOrderByCreatedAtDesc()
+            .orElseThrow(() -> new NoSuchElementException("이전 문서가 없습니다."));
+    }
 }

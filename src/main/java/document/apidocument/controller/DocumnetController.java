@@ -38,6 +38,10 @@ public class DocumnetController {
         return ResponseEntity.ok(documents);
     }
 
-
+    //이전의 project데이터 불러오기
+    @GetMapping("read/exDocumentData")
+    public ResponseEntity<Document> readPreviousDocument(){
+        return ResponseEntity.ok(documentService.getPreviousDocument());
+    }
 
 }
