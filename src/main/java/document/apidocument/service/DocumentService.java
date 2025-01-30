@@ -75,7 +75,7 @@ public class DocumentService {
     }
 
     public Document getPreviousDocument(){
-        return documentRepository.findFirstByOrderByCreatedAtDesc()
+        return documentRepository.findFirstByOrderByDateDesc()
             .orElseThrow(() -> new NoSuchElementException("이전 문서가 없습니다."));
     }
 }
