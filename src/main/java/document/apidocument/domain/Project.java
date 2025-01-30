@@ -42,7 +42,7 @@ public class Project {
     @JsonIgnore
     private List<User> users = new ArrayList<>();
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Document> documents = new ArrayList<>();
 }
