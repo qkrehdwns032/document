@@ -75,6 +75,13 @@ public class DocumentService {
     }
 
     public Document getPreviousDocument(){
+
+        List<Document> documents = readAllDocuments();
+
+        if(documents.isEmpty()){
+            return null;
+        }
+
         return documentRepository.findFirstByOrderByDateDesc()
             .orElseThrow(() -> new NoSuchElementException("이전 문서가 없습니다."));
     }
