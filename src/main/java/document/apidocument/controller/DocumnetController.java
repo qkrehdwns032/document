@@ -22,12 +22,17 @@ public class DocumnetController {
         return ResponseEntity.ok(documentService.createDocument(documentRequest));
     }
 
-    // 문서 조회
     @GetMapping("/read/{documentId}")
-    public ResponseEntity<Document> readDocument(@PathVariable Long  documentId){
-        Document document = documentService.readDocument(documentId);
-
-        return ResponseEntity.ok(document);
+    public ResponseEntity<Document> readDocument(@PathVariable Long documentId) {
+        try {
+            Document document = documentService.readDocument(documentId);
+            return ResponseEntity.ok(document);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+            // 또는
+            // return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            //     .body(new ErrorResponse("Document not found with id: " + documentId));
+        }
     }
 
     // 문서 전체 조회

@@ -5,6 +5,7 @@ import document.apidocument.domain.Endpoint;
 import document.apidocument.domain.Parameter;
 import document.apidocument.domain.Project;
 import document.apidocument.dto.document.DocumentRequest;
+import document.apidocument.exception.DocumentNotFoundException;
 import document.apidocument.repository.DocumentRepository;
 import document.apidocument.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
@@ -67,7 +68,7 @@ public class DocumentService {
 
     public Document readDocument(Long documentId) {
         return documentRepository.findById(documentId)
-                .orElseThrow(() -> new RuntimeException("Document not found"));
+                .orElseThrow(() -> new DocumentNotFoundException("Document not found with id: " + documentId));
     }
 
     public List<Document> readAllDocuments() {
