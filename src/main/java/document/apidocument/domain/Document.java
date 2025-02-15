@@ -16,7 +16,7 @@ import java.util.List;
 public class Document {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
     @Column(name = "date")
