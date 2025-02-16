@@ -23,6 +23,9 @@ public class DocumentService {
     private final DocumentRepository documentRepository;
     private final ProjectRepository projectRepository;
 
+    public List<Document> getDocumentsByProjectId(Long projectId) {
+        return documentRepository.findByProject_IdOrderByDateDesc(projectId);
+    }
     @Transactional
     public Document createDocument(DocumentRequest dto) {
         // 1. Document 엔티티 생성
