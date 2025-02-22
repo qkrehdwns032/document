@@ -30,7 +30,7 @@ public class ProjectController {
     @PostMapping("/create") // project 생성
     public ResponseEntity<Project> createProject(@RequestBody ProjectRequest projectRequest){
         return ResponseEntity.ok(projectService.createProject(projectRequest));
-    }
+    } //
 
     @PostMapping("/read/{projectId}/invitations")// project에 user 초대 권한이 있는지 확인
     public ResponseEntity<String> inviteUser(@PathVariable Long projectId){ // 권한이 있어야 하는가? 초대 버튼을 누르는 컨트롤러인데 초대는 프로젝트를 생성한 사람만 초대할 수 있음.
