@@ -22,6 +22,9 @@ public class Document {
     @Column(name = "date")
     private LocalDateTime date;
 
+    @Column(name = "writer")
+    private String writer;
+
     @ManyToOne
     @JoinColumn(name = "projectId")
     @JsonBackReference

@@ -10,6 +10,7 @@ import java.util.List;
 @Setter
 public class DocumentRequest {
     private LocalDateTime date;
+    private String writer;
     private Long projectId;
     private List<EndpointRequest> endpoints;
 }

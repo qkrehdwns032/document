@@ -31,6 +31,7 @@ public class DocumentService {
         // 1. Document 엔티티 생성
         Document document = new Document();
         document.setDate(dto.getDate());
+        document.setWriter(dto.getWriter());
 
         // Project 설정
         Project project = projectRepository.findById(dto.getProjectId())
