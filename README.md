@@ -113,41 +113,45 @@
 └──src
   └──main
     └──java
-      └──com.example.neulbom
+      └──document.apidocument
         └──config
-          └──NCPConfig
           └──SecurityConfig
         └──controller
-          └──CommentController
+          └──AuthController
           └──GlobalExeptionHandler
-          └──LikeController
-          └──PhotoController
-          └──UserController
+          └──DocumentController
+          └──ProjectController
         └──domain
-          └──Comment
-          └──Like
-          └──Photo
+          └──Document
+          └──Endpoint
+          └──Parameter
+          └──Project
           └──User
         └──dto
-          └──CommentRequest
-          └──CommentResponse
-          └──LoginRequest
-          └──PhotoResponse
-          └──Register
-          └──Upload
-          └──UserUploadResponse
+          └──document
+            └──DocumentReqeust
+            └──EndpointRequest
+            └──ParameterRequest
+          └──login
+            └──LoginRequest
+            └──SignupRequest
+            └──TokenResponse
+          └──project
+            └──ProjectRequest
+          └──exception
+            └──DocumentNotFoundException
         └──repository
-          └──CommentRepository
-          └──LikeRepository
-          └──PhotoRepository
+          └──DocumentRepository
+          └──ProjectRepository
           └──UserRepository
+        └──security.jwt
+          └──JwtAuthenticationFilter
+          └──JwtTokenProvider
         └──service
-          └──CommentService
-          └──LikeService
-          └──NCPStorageService
-          └──PhotoService
+          └──DocumentService
+          └──ProjectService
           └──UserService
-      └──NeulbomApplication
+      └──ApidocumentApplication
     └──resources
       application.yml
   └──test
