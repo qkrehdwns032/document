@@ -38,7 +38,11 @@
 ## 3. 페이지별 기능
 
 ### [프로젝트 피드 & 문서 피드]
-![프로젝트](./images/Project.png)
+ - 유저의 프로젝트들이 보여진다.
+ - 우측 상단의 프로젝트 생성 버튼으로 프로젝트를 생성할 수 있고, 프로젝트 조회 시 프로젝트의 API문서들을 볼 수 있다.
+ - 프로젝트에 참여할 인원을 초대할 수 있다.
+![프로젝트](./images/projectdocument.gif)
+![invite](./images/invite.gif)
 
 ### [회원가입 & 로그인]
 - 아이디, 비밀번호, 이름을 입력하면 가입할 수 있다.
@@ -61,36 +65,92 @@
 ### [로그아웃]
 - 우측 상단의 로그아웃 버튼을 클릭하면 로그아웃이 진행됩니다.
 - 로그아웃시 TOKEN을 반납하고 초기화면으로 이동하게 된다.
+  
 |로그아웃|
 |--------|
 |![로그아웃](./images/logout.gif)|
+
+### [프로젝트]
+
+#### 1. 프로젝트 작성
+- 모든 항목이 입력되면 프로젝트를 생성한다.
+
+| 프로젝트 생성 |
+|----------|
+|![프로젝트 생성](./images/create.gif)|
+
 <br>
 
+#### 2. 프로젝트 삭제
+- 게시글 삭제 버튼 클릭 시, 게시글을 삭제하고 페이지를 리렌더링하여 삭제된 내용을 페이지에 반영합니다.
 
+| 프로젝트 삭제 |
+|----------|
+|![프로젝트 삭제](./images/delete.png)|
 
+<br>
 
+### [API 문서]
 
+#### 1. 문서 작성
+- 모든 항목이 입력되면 API 문서를 생성한다.
+- 파라미터, 엔드포인트를 추가할 수 있다.
 
+| 문서 생성 |
+|----------|
+|![문서 생성](./images/createdocument.gif)|
 
+<br>
 
+## 4 ERD
 
+<br>
 
+## 5. 프로젝트 구조
 
+### [Backend]
+```
+└──src
+  └──main
+    └──java
+      └──com.example.neulbom
+        └──config
+          └──NCPConfig
+          └──SecurityConfig
+        └──controller
+          └──CommentController
+          └──GlobalExeptionHandler
+          └──LikeController
+          └──PhotoController
+          └──UserController
+        └──domain
+          └──Comment
+          └──Like
+          └──Photo
+          └──User
+        └──dto
+          └──CommentRequest
+          └──CommentResponse
+          └──LoginRequest
+          └──PhotoResponse
+          └──Register
+          └──Upload
+          └──UserUploadResponse
+        └──repository
+          └──CommentRepository
+          └──LikeRepository
+          └──PhotoRepository
+          └──UserRepository
+        └──service
+          └──CommentService
+          └──LikeService
+          └──NCPStorageService
+          └──PhotoService
+          └──UserService
+      └──NeulbomApplication
+    └──resources
+      application.yml
+  └──test
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<br>
