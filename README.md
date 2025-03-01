@@ -103,7 +103,7 @@
 <br>
 
 ## 4 ERD
-
+![erd](./images/erd.png)
 <br>
 
 ## 5. 프로젝트 구조
